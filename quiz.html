@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+<body>
+    <div id='questions'></div>
+    <button>Submit</button>
+</body>
+<script>
+    const template = Handlebars.compile(`<div>
+        <div>
+            Question {{questionNumber}}: {{qu}}
+        </div>
+        <input type="radio" id="male" name="{{questionNumber}}" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="{{questionNumber}}" value="female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="{{questionNumber}}" value="other">
+        <label for="other">Other</label>
+    </div>`);
+
+    // Here are the questions
+    const questions = [
+        {
+            qu: 'How much do you weigh?',
+            answers: '123'
+        },
+        {
+            qu: 'How much?',
+            answer: 10
+        },
+        {
+            qu: 'How much is this?',
+            answer: 10
+        }
+    ]
+
+    // Randomise questions
+    questions.sort( () => .5 - Math.random() );
+
+    // Print the questions
+    for (let i = 0; i < questions.length; i++) {
+        const q = questions[i];
+
+        q.questionNumber = i + 1;
+        const html = template(q);
+
+        document.getElementById('questions').innerHTML += html;
+    }
+
+</script>
+
+</html>
