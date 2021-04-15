@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&effect=fire" rel="stylesheet">
+    <style>
+        .button {
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            font-family: "Love ya like a sister", sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            transition-duration: 0.7s;
+            -webkit-transition-duration: 0.7s;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: white;
+            border: 2px solid black;
+        }
+        .text {
+            color: black;
+            font-family: "Love ya like a sister", sans-serif;
+        }
+
+        .button:hover {
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+        }
+    </style>
+</head>
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 <body>
-    <div id='questions'></div>
-    <button onclick="calculate()">Submit</button>
-    <div id=score style="display: none;"> score is <span id=total></span></div>
+    <form id='form' onsubmit="return false;">
+        <div class="text" id='questions'></div>
+        <button class="button">Submit</button>
+        <input class="button" type="button" onclick="location.href='quiz.html';" value="Reload" />
+        <input class="button" type="button" onclick="location.href='index.html';" value="Züruck zur Hauptseite" />
+        <div class="text" id=score style="display: none;"> score is <span id=total></span></div>
+    </form>
 </body>
 <script>
+    const form = document.getElementById('form');
+    form.addEventListener('submit', calculate);
 
     function calculate() {
         const correct = document.querySelectorAll("input:checked[value='correct']");
@@ -22,7 +61,7 @@
             Question {{questionNumber}}: {{qu}}
         </div>
         {{#each answers}}
-        <input type="radio" id="{{value}}" name="{{../questionNumber}}" value="{{isCorrect}}">
+        <input type="radio" id="{{value}}" name="{{../questionNumber}}" value="{{isCorrect}}" required>
         <label for="{{value}}">{{value}}</label><br>
         {{/each}}
         </div>`
@@ -39,6 +78,12 @@
                 },
                 {
                     value: 'abc',
+                },
+                {
+                    value: 'hghfg',
+                },
+                {
+                    value: 'ererrg',
                 }
             ]
         },
@@ -72,7 +117,7 @@
     questions.sort(() => .5 - Math.random());
 
     // Print the questions
-    for (let i = 0; i < questions.length; i++) {
+    for (let i = 0; i < 2; i++) {
         const q = questions[i];
 
         q.questionNumber = i + 1;
