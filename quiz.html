@@ -4,39 +4,72 @@
 
 <body>
     <div id='questions'></div>
-    <button>Submit</button>
+    <button onclick="calculate()">Submit</button>
+    <div id=score style="display: none;"> score is <span id=total></span></div>
 </body>
 <script>
+
+    function calculate() {
+        const correct = document.querySelectorAll("input:checked[value='correct']");
+        const all = document.querySelectorAll("input:checked");
+
+        document.getElementById('score').style.display = 'block'
+        document.getElementById('total').innerHTML = correct.length + '/' + all.length
+    }
+
     const template = Handlebars.compile(`<div>
         <div>
             Question {{questionNumber}}: {{qu}}
         </div>
-        <input type="radio" id="male" name="{{questionNumber}}" value="male">
-        <label for="male">Male</label><br>
-        <input type="radio" id="female" name="{{questionNumber}}" value="female">
-        <label for="female">Female</label><br>
-        <input type="radio" id="other" name="{{questionNumber}}" value="other">
-        <label for="other">Other</label>
-    </div>`);
+        {{#each answers}}
+        <input type="radio" id="{{value}}" name="{{../questionNumber}}" value="{{isCorrect}}">
+        <label for="{{value}}">{{value}}</label><br>
+        {{/each}}
+        </div>`
+    );
 
     // Here are the questions
     const questions = [
         {
             qu: 'How much do you weigh?',
-            answers: '123'
+            answers: [
+                {
+                    value: '123',
+                    isCorrect: 'correct'
+                },
+                {
+                    value: 'abc',
+                }
+            ]
         },
         {
             qu: 'How much?',
-            answer: 10
+            answers: [
+                {
+                    value: '123',
+                    isCorrect: 'correct'
+                },
+                {
+                    value: 'abc',
+                }
+            ]
         },
         {
             qu: 'How much is this?',
-            answer: 10
+            answers: [
+                {
+                    value: '123',
+                    isCorrect: 'correct'
+                },
+                {
+                    value: 'abc',
+                }
+            ]
         }
     ]
 
     // Randomise questions
-    questions.sort( () => .5 - Math.random() );
+    questions.sort(() => .5 - Math.random());
 
     // Print the questions
     for (let i = 0; i < questions.length; i++) {
