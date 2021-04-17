@@ -31,6 +31,10 @@
             color: rgb(0, 255, 0);
         }
 
+        .bad {
+            color: red;
+        }
+
         .hiddenButton {
             color: black;
             width: 100%;
@@ -103,6 +107,13 @@
 
     function calculate() {
         clearGood()
+
+        const wrongAnswers = document.querySelectorAll("input:checked[value='']");
+        wrongAnswers.forEach(element => {
+            const label = document.querySelector("label[for='" + element.id + "']")
+            label.classList.add('bad')
+        });
+
         const correctAnswers = document.querySelectorAll("input:checked[value='correct']");
         correctAnswers.forEach(element => {
             const label = document.querySelector("label[for='" + element.id + "']")
