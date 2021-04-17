@@ -102,14 +102,23 @@
 
 
     function calculate() {
-        const correct = document.querySelectorAll("input:checked[value='correct']");
-        correct.forEach(element => {
-            element.classList('good')
+        clearGood()
+        const correctAnswers = document.querySelectorAll("input:checked[value='correct']");
+        correctAnswers.forEach(element => {
+            const label = document.querySelector("label[for='" + element.id + "']")
+            label.classList.add('good')
         });
         const all = document.querySelectorAll("input:checked");
 
         document.getElementById('score').style.display = 'block'
-        document.getElementById('total').innerHTML = correct.length + '/' + all.length
+        document.getElementById('total').innerHTML = correctAnswers.length + '/' + all.length
+    }
+
+    function clearGood() {
+        const labels = document.querySelectorAll("label")
+        labels.forEach(element => {
+            element.classList.remove('good')
+        });
     }
 
     const template = Handlebars.compile(`<div>
@@ -117,8 +126,8 @@
             Question {{questionNumber}}: {{qu}}
         </div>
         {{#each answers}}
-        <input type="radio" id="{{value}}" name="{{../questionNumber}}" value="{{isCorrect}}" required>
-        <label for="{{value}}">{{value}}</label><br>
+        <input type="radio" id="{{../questionNumber}}-{{value}}" name="{{../questionNumber}}" value="{{isCorrect}}" required>
+        <label for="{{../questionNumber}}-{{value}}">{{value}}</label><br>
         {{/each}}
         </div>`
     );
