@@ -65,6 +65,9 @@
             border: 2px solid white;
         }
 
+        .hidden {
+            display: none;
+        }
 
         .button:hover {
             width: 100%;
@@ -77,10 +80,11 @@
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 <body>
+    <title>Quiz</title>
     <form id='form' onsubmit="return false;">
         <div class="text" id='questions'></div>
         <button class="button">Prüfen</button>
-        <div class="text" id=score style="display: none;"> score is <span id=total></span></div>
+        <div class="text" id=score style="display: none;"> Dein Ergibnis ist <span id=total></span></div>
     </form>
     <form id='ans' onclick="return false;">
         <br>
@@ -92,9 +96,11 @@
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <button class="hiddenButton">Lösungen</button>
-        <div></div>
+        <button class="hiddenButton" onclick="unhide()">Clicke Hier!</button>
     </form>
+    <img class="hidden" src="dove.png">
+    <br>
+    <div class="hidden text"> Du Hast Gewonnen!</div>
 </body>
 <script>
     const form = document.getElementById('form');
@@ -104,14 +110,21 @@
     const answerForm = document.getElementById('egg');
     form.addEventListener('submit', calculate);
 
+    function unhide() {
+        const thingsToHide = document.querySelectorAll('.hidden')
+        for (let i = 0; i < thingsToHide.length; i++) {
+            const element = thingsToHide[i];
+            element.classList.remove('hidden')
+        }
+    }
 
     function calculate() {
         clearGood()
 
         const wrongAnswers = document.querySelectorAll("input:checked[value='']");
         wrongAnswers.forEach(element => {
-            const label = document.querySelector("label[for='" + element.id + "']")
-            label.classList.add('bad')
+            const kk = document.querySelector("label[for='" + element.id + "']")
+            kk.classList.add('bad')
         });
 
         const correctAnswers = document.querySelectorAll("input:checked[value='correct']");
