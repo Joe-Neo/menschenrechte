@@ -147,7 +147,7 @@
 
     const template = Handlebars.compile(`<div>
         <div>
-            Question {{questionNumber}}: {{qu}}
+            Frage {{questionNumber}}: {{qu}}
         </div>
         {{#each answers}}
         <input type="radio" id="{{../questionNumber}}-{{value}}" name="{{../questionNumber}}" value="{{isCorrect}}" required>
@@ -159,44 +159,47 @@
     // Here are the questions
     const questions = [
         {
-            qu: 'How much do you weigh?',
+            qu: 'Die so gennanten "Vier Freiheiten" sind grundlegend für die Menschenrechtserklärung. Wer formulierte sie 1941?',
             answers: [
                 {
-                    value: '123',
+                    value: 'Papst Pius XII',
+                },
+                {
+                    value: 'Franklin D. Roosvelt',
                     isCorrect: 'correct'
                 },
                 {
-                    value: 'abc',
+                    value: 'Winston Churchhill',
                 },
                 {
-                    value: 'hghfg',
-                },
-                {
-                    value: 'ererrg',
+                    value: 'Papst Piust XI',
                 }
             ]
         },
         {
-            qu: 'How much?',
+            qu: 'An wen richtet sich die Allgemeine Menschenrechtserklärung?',
             answers: [
                 {
-                    value: '123',
+                    value: 'Alle',
                     isCorrect: 'correct'
                 },
                 {
-                    value: 'abc',
+                    value: 'Alle ab 12',
                 }
             ]
         },
         {
-            qu: 'How much is this?',
+            qu: 'Wie viele Artikel hat die Allgemeine Erklärung der Menschenrechte?',
             answers: [
                 {
-                    value: '123',
+                    value: '30',
                     isCorrect: 'correct'
                 },
                 {
-                    value: 'abc',
+                    value: '43',
+                },
+                {
+                    value: 'Mehr als 100'
                 }
             ]
         }
