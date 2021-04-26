@@ -9,6 +9,13 @@
             background-color: black;
         }
 
+        h1 {
+            text-align: center;
+            font-family: "Love ya like a sister", sans-serif;
+            color: white;
+            text-shadow: 0px 0px 10px blue;
+        }
+
         .button {
             color: white;
             width: 100%;
@@ -65,6 +72,13 @@
             border: 2px solid white;
         }
 
+        h5 {
+            font-family: "Love ya like a sister", sans-serif;
+            text-align: center;
+            color: white;
+            text-shadow: 0px 0px 10px red;
+        }
+
         .hidden {
             display: none;
         }
@@ -80,27 +94,31 @@
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 <body>
-    <title>Quiz</title>
-    <form id='form' onsubmit="return false;">
-        <div class="text" id='questions'></div>
-        <button class="button">Prüfen</button>
-        <div class="text" id=score style="display: none;"> Dein Ergibnis ist <span id=total></span></div>
-    </form>
-    <form id='ans' onclick="return false;">
+    <h5 style="position: fixed;bottom: 0;width:100%;">Joseph Bekesi</h5>
+    <h1>*Menschenreche Quiz*</h1>
+    <div style="padding: 100px;">
+        <title>Menschenrechte Quiz</title>
+        <form id='form' onsubmit="return false;">
+            <div class="text" id='questions'></div>
+            <button class="button">Prüfen</button>
+            <div class="text" id=score style="display: none;"> Dein Ergibnis ist <span id=total></span></div>
+        </form>
+        <form id='ans' onclick="return false;">
+            <br>
+            <input class="button" type="button" onclick="location.href='quiz.html';" value="Neu laden" />
+            <br>
+            <input class="button" type="button" onclick="location.href='index.html';" value="Züruck zur Hauptseite" />
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <button class="hiddenButton" onclick="unhide()">Clicke Hier!</button>
+        </form>
+        <img class="hidden" src="dove.png">
         <br>
-        <input class="button" type="button" onclick="location.href='quiz.html';" value="Neu laden" />
-        <br>
-        <input class="button" type="button" onclick="location.href='index.html';" value="Züruck zur Hauptseite" />
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <button class="hiddenButton" onclick="unhide()">Clicke Hier!</button>
-    </form>
-    <img class="hidden" src="dove.png">
-    <br>
-    <div class="hidden text"> Du Hast Gewonnen!</div>
+        <div class="hidden text"> Du Hast Gewonnen!</div>
+    </div>
 </body>
 <script>
     const form = document.getElementById('form');
@@ -201,25 +219,58 @@
                 {
                     value: 'Mehr als 100'
                 }
-                
+
             ]
         },
         {
-            qu: 'Die so gennanten "Vier Freiheiten" sind grundlegend für die Menschenrechtserklärung. Wer formulierte sie 1941?',
+            qu: 'Welches der folgenden Menschenrechte darf auch im Falle des Notstandes nicht ausgesetzt werden?',
             answers: [
                 {
-                    value: 'Papst Pius XII',
+                    value: 'Versammlungs- und Vereinigungsfreiheit',
                 },
                 {
-                    value: 'Franklin D. Roosvelt',
+                    value: 'Verbot der Sklaverei und Leibeigenschaft',
                     isCorrect: 'correct'
                 },
                 {
-                    value: 'Winston Churchhill',
+                    value: 'Recht auf Freiheit und Sicherheit',
                 },
                 {
-                    value: 'Papst Piust XI',
+                    value: 'Keiner',
                 }
+            ]
+        },
+        {
+            qu: 'Was ist nicht einer von unsere Rechte?',
+            answers: [
+                {
+                    value: 'Gleichheit vor dem Gesetz',
+                },
+                {
+                    value: 'Keiner',
+                    isCorrect: 'correct'
+                },
+                {
+                    value: 'Freiheit des Kulturlebens',
+                },
+                {
+                    value: 'Asylrecht',
+                }
+            ]
+        },
+        {
+            qu: 'Darf man mit Covid-19 auf ein Flugzeug gehen?',
+            answers: [
+                {
+                    value: 'Gleichheit vor dem Gesetz',
+                },
+                {
+                    value: 'Keiner',
+                },
+                {
+                    value: 'Freiheit des Kulturlebens',
+                    isCorrect: 'correct'
+                },
             ]
         },
     ]
