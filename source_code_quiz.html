@@ -1,139 +1,221 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html <html>
 
 <head>
-    <style>
+  <style>
 
-    </style>
+  </style>
 </head>
 </style>
 </head>
 
 <body>
-    <title>Sorce Code</title>
-    <input type="button" onclick="location.href='index.html';" value="Züruck zur Hauptseite" />
-
-    <pre>
+  <title>Sorce Code</title>
+  <input type="button" onclick="location.href='index.html';" value="Züruck zur Hauptseite" />
+  <!-- &lt &gt -->
+  <pre>
            <code>
+&lt!DOCTYPE html>
+&lthtml>
+
+&lthead>
+    &ltlink rel="preconnect" href="https://fonts.gstatic.com">
+    &ltlink href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&effect=fire" rel="stylesheet">
+    &ltstyle>
+        body {
+            background-color: black;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: "Love ya like a sister", sans-serif;
+            color: white;
+            text-shadow: 0px 0px 10px blue;
+        }
+
+        .button {
+            color: white;
+            width: 100%;
+            padding: 15px 32px;
+            text-align: center;
+            font-family: "Love ya like a sister", sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            transition-duration: 0.7s;
+            -webkit-transition-duration: 0.7s;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: black;
+            border: 2px solid white;
+        }
+
+        .good {
+            color: rgb(0, 255, 0);
+        }
+
+        .bad {
+            color: red;
+        }
+
+        .hiddenButton {
+            color: black;
+            width: 100%;
+            padding: 15px 32px;
+            text-align: center;
+            font-family: "Love ya like a sister", sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            transition-duration: 0.7s;
+            -webkit-transition-duration: 0.7s;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: black;
+            border: 2px solid black;
+        }
+
+        .text {
+            color: white;
+            font-family: "Love ya like a sister", sans-serif;
+        }
+
+        .hiddenButton:hover {
+            width: 100%;
+            background-color: white;
+            color: black;
+            border: 2px solid white;
+        }
+
+        h5 {
+            font-family: "Love ya like a sister", sans-serif;
+            text-align: center;
+            color: white;
+            text-shadow: 0px 0px 10px red;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .button:hover {
+            width: 100%;
+            background-color: white;
+            color: black;
+            border: 2px solid white;
+        }
+    &lt/style>
+&lt/head>
+&ltscript src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js">&lt/script>
+
+&ltbody>
+    &lth5 style="position: fixed;bottom: 0;width:100%;">Joseph Bekesi&lt/h5>
+    &lth1>*Menschenreche Quiz*&lt/h1>
+    &ltdiv style="padding: 100px;">
+        &lttitle>Menschenrechte Quiz&lt/title>
+        &ltform id='form' onsubmit="return false;">
+            &ltdiv class="text" id='questions'>&lt/div>
+            &ltbutton class="button">Prüfen&lt/button>
+            &ltdiv class="text" id=score style="display: none;"> Dein Ergibnis ist &ltspan id=total>&lt/span>&lt/div>
+        &lt/form>
+        &ltform id='ans' onclick="return false;">
+            &ltbr>
+            &ltinput class="button" type="button" onclick="location.href='quiz.html';" value="Neu laden" />
+            &ltbr>
+            &ltinput class="button" type="button" onclick="location.href='index.html';" value="Züruck zur Hauptseite" />
+            &ltbutton class="hiddenButton" onclick="unhide()">Clicke Hier!&lt/button>
+        &lt/form>
+        &ltimg class="hidden" src="dove.png">
+        &ltbr>
+        &ltdiv class="hidden text"> Du Hast Gewonnen!&lt/div>
+    &lt/div>
+&lt/body>
+&ltscript>
+  const form = document.getElementById('form');
+  form.addEventListener('submit', calculate);
+
+
+  const answerForm = document.getElementById('egg');
+  form.addEventListener('submit', calculate);
+
+  function unhide() {
+    const thingsToHide = document.querySelectorAll('.hidden')
+    for (let i = 0; i &lt thingsToHide.length; i++) {
+      const element = thingsToHide[i];
+      element.classList.remove('hidden')
+    }
+  }
+
+  function calculate() {
+    clearGood()
+
+    const wrongAnswers = document.querySelectorAll("input:checked[value='']");
+    wrongAnswers.forEach(element => {
+      const kk = document.querySelector("label[for='" + element.id + "']")
+      kk.classList.add('bad')
+    });
+
+    const correctAnswers = document.querySelectorAll("input:checked[value='correct']");
+    correctAnswers.forEach(element => {
+      const label = document.querySelector("label[for='" + element.id + "']")
+      label.classList.add('good')
+    });
+    const all = document.querySelectorAll("input:checked");
+
+    document.getElementById('score').style.display = 'block'
+    document.getElementById('total').innerHTML = correctAnswers.length + '/' + all.length
+  }
+
+  function clearGood() {
+    const labels = document.querySelectorAll("label")
+    labels.forEach(element => {
+      element.classList.remove('good')
+    });
+  }
+
+  const template = Handlebars.compile(`&ltdiv>
+        &ltdiv class="question-name">
+            Frage {{questionNumber}}: {{qu}}
+        &lt/div>
+        {{#each answers}}
+        &ltinput type="radio" id="{{../questionNumber}}-{{value}}" name="{{../questionNumber}}" value="{{isCorrect}}" required>
+        &ltlabel for="{{../questionNumber}}-{{value}}">{{value}}&lt/label>&ltbr>
+        {{/each}}
+        &lt/div>`
+  );
 
 
 
 
 
 
+Die fragen haben die losungen
 
 
 
 
 
+  
+  // Randomise questions
+  questions.sort(() => .5 - Math.random());
 
+  // Print the questions
+  for (let i = 0; i &lt 3; i++) {
+    const q = questions[i];
 
+    q.questionNumber = i + 1;
+    const html = template(q);
 
-            &lt;!DOCTYPE html&gt;
-            &lt;html&gt;
-                &lt;head&gt;
-                    &lt;link rel="preconnect" href="https://fonts.gstatic.com"&gt;
-                    &lt;link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&effect=fire" rel="stylesheet"&gt;
-                    &lt;style&gt;
-                        .button {
-              background-color: #4CAF50;
-              border: none;
-              color: white;
-              padding: 15px 32px;
-              text-align: center;
-              text-decoration: none;
-              display: inline-block;
-              font-size: 16px;
-              margin: 4px 2px;
-              transition-duration: 0.7s;
-              -webkit-transition-duration: 0.7s;
-              cursor: pointer;
-            }
-            .button {
-              background-color: white; 
-              color: black; 
-              border: 2px solid #4CAF50;
-            }
-            .button:hover {
-              background-color: #4CAF50;
-              color: white;
-            }
-            
-            img {
-              text-align: center;
-              width: 50%;
-              height: auto;
-            }
-            
-                        body {
-              font-family: "Love ya like a sister", sans-serif;
-              font-size: 20px;
-              color: white;
-            }
-            h1 {
-              text-align: center;
-              font-family: "Love ya like a sister", sans-serif;
-              color: white;
-            }
-            
-            h2 {
-                font-family: "Love ya like a sister", sans-serif;
-                text-align: left;
-              color: white;
-                }
-            h5 {
-                font-family: "Love ya like a sister", sans-serif;
-                text-align: left;
-              color: white;
-            }
-                        body {
-              background-color: rgb(0, 0, 0);
-            }
-            
-            &lt;/style&gt;
-            &lt;/head&gt;
-            &lt;body&gt;
-                   &lt;title&gt;Menschenreche&lt;/title&gt;
-                &lt;/head&gt;
-                &lt;body&gt;
-                    &lt;H1 class="font-effect-fire"&gt;*Menschenrechte* &lt;br&gt;&lt;/H1&gt;
-                    &lt;h2 class="font-effect-fire"&gt;Bitte drücken Sie eine der vier Tasten: &lt;br&gt;
-                    
-                    
-                      &lt;input class="button" type="button" onclick="location.href='https://google.com';" value="Quiz"/&gt;
-                    
-                      &lt;input class="button" type="button" onclick="location.href='https://google.com';" value="Unsere Rechte"/&gt;
-            
-                      &lt;input class="button" type="button" onclick="location.href='https://google.com';" value="Uber Freiheit"/&gt;
-            
-                      &lt;input class="button" type="button" onclick="location.href='http://127.0.0.1:5500/sorce_code.html';" value="Sorce code"/&gt;
-            
-                    &lt;img src="" alt=""&gt;
-                    &lt;h5 class="font-effect-fire" style="position: fixed;bottom: 0;width:100%;text-align: center;color: white;"&gt;Joseph Bekesi&lt;/h5&gt;
-                    &lt;img src="Human_Rights.png"&gt;
-                &lt;/body&gt;
-            &lt;/html&gt;
+    document.getElementById('questions').innerHTML += html;
+  }
 
+&lt/script>
 
+&lt/html>
 
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-           </code>
-       </pre>
+</code>
+</pre>
 </body>
 
 </html>

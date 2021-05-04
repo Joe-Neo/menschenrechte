@@ -57,19 +57,20 @@
             cursor: pointer;
             border-radius: 8px;
             background-color: black;
-            border: 2px solid black;
+            border: 400px solid black;
         }
 
         .text {
             color: white;
             font-family: "Love ya like a sister", sans-serif;
+            font-size: 20px;
         }
 
         .hiddenButton:hover {
             width: 100%;
             background-color: white;
             color: black;
-            border: 2px solid white;
+            border: 400px solid white;
         }
 
         h5 {
@@ -108,11 +109,14 @@
             <input class="button" type="button" onclick="location.href='quiz.html';" value="Neu laden" />
             <br>
             <input class="button" type="button" onclick="location.href='index.html';" value="Züruck zur Hauptseite" />
+            <br>
+            <input class="button" type="button" onclick="location.href='source_code_quiz.html';" value="Source Code" />
+            <div style="margin-bottom: 1000px;"></div>
             <button class="hiddenButton" onclick="unhide()">Clicke Hier!</button>
         </form>
         <img class="hidden" src="dove.png">
         <br>
-        <div class="hidden text"> Du Hast Gewonnen!</div>
+        <div class="hidden text"> Sie haben Gewonnen!</div>
     </div>
 </body>
 <script>
@@ -159,7 +163,7 @@
     }
 
     const template = Handlebars.compile(`<div>
-        <div class="question-name">
+        <div class="question-name" style="margin: 15px 0px 5px 0px; font-size: 25px;">
             Frage {{questionNumber}}: {{qu}}
         </div>
         {{#each answers}}
@@ -231,7 +235,7 @@
                     value: 'Recht auf Freiheit und Sicherheit',
                 },
                 {
-                    value: 'Keiner',
+                    value: 'Keiner'
                 }
             ]
         },
@@ -249,7 +253,7 @@
                     value: 'Freiheit des Kulturlebens',
                 },
                 {
-                    value: 'Asylrecht',
+                    value: 'Asylrecht'
                 }
             ]
         },
@@ -261,17 +265,79 @@
                     isCorrect: 'correct'
                 },
                 {
-                    value: 'Nein',
+                    value: 'Nein'
                 }
             ]
         },
+        {
+            qu: 'Welches der folgenden Menschenrechte darf auch im Falle des Notstandes nicht ausgesetzt werden?',
+            answers: [
+                {
+                    value: 'Der Balkan-Konflikt in den 1990er Jahren',
+                },
+                {
+                    value: 'Der Zweite Weltkrieg',
+                    isCorrect: 'correct'
+                },
+                {
+                    value: 'Die Gründung der Vereinten Nationen 1945',
+                },
+                {
+                    value: 'Die Weltwirtschaftskrise 1929',
+                },
+                {
+                    value: 'Die Gründung der Vereinten Nationen 1950'
+                }
+            ]
+        },
+        {
+            qu: 'Ist das Gesetz oder unsere Rechte wichtiger?',
+            answers: [
+                {
+                    value: 'Unsere Rechte',
+                    isCorrect: 'correct'
+                },
+                {
+                    value: 'Gesetz'
+                }
+            ]
+        },
+        {
+            qu: 'Was ist das 31. Menschenrecht?',
+            answers: [
+                {
+                    value: 'Auslegungs Regel',
+                },
+                {
+                    value: 'Asylrecht',
+                },
+                {
+                    value: 'Freiheit des Kulturlebens',
+                },
+                {
+                    value: 'Es gibt Keiner'
+                }
+            ]
+        },
+        {   qu: 'Wie werden Menschenrechte überwacht?',
+            answers: [
+                {
+                    value: 'Weltmenschenrechtsausschuss',
+                },
+                {
+                    value: 'UN-Menschenrechtsrat',
+                },
+                {
+                    value: 'Beide',
+                }
+            ]
+        }
     ]
-
     // Randomise questions
     questions.sort(() => .5 - Math.random());
 
     // Print the questions
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
         const q = questions[i];
 
         q.questionNumber = i + 1;
