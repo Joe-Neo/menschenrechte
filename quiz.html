@@ -270,7 +270,7 @@
             ]
         },
         {
-            qu: 'Welches der folgenden Menschenrechte darf auch im Falle des Notstandes nicht ausgesetzt werden?',
+            qu: 'Welches historische Ereignis war Anlass für die Allgemeine Erklärung der Menschenrechte?',
             answers: [
                 {
                     value: 'Der Balkan-Konflikt in den 1990er Jahren',
@@ -330,6 +330,7 @@
                 },
                 {
                     value: 'Beide',
+                    isCorrect: 'correct'
                 }
             ]
         }
@@ -338,7 +339,7 @@
     questions.sort(() => .5 - Math.random());
 
     // Print the questions
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
         const q = questions[i];
 
         q.questionNumber = i + 1;
